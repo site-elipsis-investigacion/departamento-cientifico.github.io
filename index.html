@@ -44,20 +44,20 @@
       .font-typewriter { font-family: 'Special Elite', monospace; }
       .font-mono-ibm { font-family: 'IBM Plex Mono', monospace; }
       .panel {
-        background: linear-gradient(180deg, var(--bg-panel) 0%, var(--bg-elevated) 100%);
+        background: var(--bg-void);
         border: 1px solid var(--border-faint);
       }
     }
 
     @layer utilities {
-      .text-glow-amber { text-shadow: 0 0 12px rgba(212, 160, 42, 0.4); }
+      .text-glow-amber { text-shadow: none; }
       .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
       .animate-fade-in { animation: fade-in 0.8s ease-out forwards; }
     }
 
     @keyframes pulse-glow {
-      0%, 100% { opacity: 0.6; box-shadow: 0 0 20px rgba(212, 160, 42, 0.3); }
-      50% { opacity: 1; box-shadow: 0 0 40px rgba(212, 160, 42, 0.6); }
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
     }
     @keyframes fade-in {
       from { opacity: 0; }
@@ -120,14 +120,13 @@
 
     /* ───────────── Emblema  ───────────── */
     function atomMark(cls) {
-      var orbit = 'M 185,100 A 85,32 0 1,1 15,100 A 85,32 0 1,1 185,100';
       return '<svg viewBox="0 0 200 200" class="' + cls + '" fill="none" xmlns="http://www.w3.org/2000/svg">' +
         '<g><ellipse cx="100" cy="100" rx="85" ry="32" stroke="#d4a02a" stroke-width="1" opacity="0.5"/>' +
-          '<circle r="4" fill="#d4a02a"><animateMotion dur="6s" repeatCount="indefinite" path="' + orbit + '"/></circle></g>' +
+          '<circle cx="185" cy="100" r="4" fill="#d4a02a"/></g>' +
         '<g transform="rotate(60 100 100)"><ellipse cx="100" cy="100" rx="85" ry="32" stroke="#d4a02a" stroke-width="1" opacity="0.4"/>' +
-          '<circle r="3" fill="#e8c558" opacity="0.8"><animateMotion dur="8s" repeatCount="indefinite" path="' + orbit + '"/></circle></g>' +
+          '<circle cx="20" cy="89" r="3" fill="#e8c558" opacity="0.8"/></g>' +
         '<g transform="rotate(120 100 100)"><ellipse cx="100" cy="100" rx="85" ry="32" stroke="#d4a02a" stroke-width="1" opacity="0.35"/>' +
-          '<circle r="3.5" fill="#c8d2dc" opacity="0.7"><animateMotion dur="10s" repeatCount="indefinite" path="' + orbit + '" rotate="auto"/></circle></g>' +
+          '<circle cx="71" cy="130" r="3.5" fill="#c8d2dc" opacity="0.7"/></g>' +
         '<circle cx="100" cy="100" r="14" fill="#9a4a2a" opacity="0.3"/>' +
         '<circle cx="100" cy="100" r="7" fill="#d4a02a"/>' +
         '<circle cx="100" cy="100" r="3" fill="#f0e6d0"/>' +
@@ -193,12 +192,12 @@
 
       return '' +
         '<div class="fixed inset-0 z-50 bg-[#07090c] flex items-center justify-center overflow-hidden">' +
-          '<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,160,42,0.04)_0%,transparent_60%)]"></div>' +
-          '<div class="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#d4a02a]/20 to-transparent" style="top:50%"></div>' +
+          '' +
+          '' +
           '<div class="relative w-full max-w-md px-6 animate-fade-in">' +
             '<div class="flex justify-center mb-8"><div class="relative">' +
               atomMark('w-48 h-48') +
-              '<div class="absolute inset-0 bg-[radial-gradient(circle,rgba(212,160,42,0.08)_0%,transparent_70%)] rounded-full"></div>' +
+              '' +
             '</div></div>' +
             '<div class="text-center mb-8">' +
               '<div class="flex items-center justify-center gap-2 text-[#9a4a2a] mb-3">' +
@@ -287,7 +286,7 @@
       return '<div class="mb-10">' +
         '<div class="flex items-center gap-3 mb-3">' +
           '<span class="font-mono-ibm text-[10px] text-[#9a4a2a] tracking-[0.3em] uppercase">' + index + '</span>' +
-          '<div class="h-px flex-1 bg-gradient-to-r from-[#9a4a2a]/40 to-transparent"></div>' +
+          '<div class="h-px flex-1 bg-[#1a2532]"></div>' +
         '</div>' +
         '<h2 class="font-typewriter text-3xl sm:text-4xl text-[#c8d2dc] tracking-wide">' + title + '</h2>' +
         '<p class="font-mono-ibm text-xs text-[#5a6878] tracking-[0.15em] uppercase mt-3">' + subtitle + '</p>' +
@@ -320,7 +319,7 @@
 
       return '<div class="animate-fade-in">' +
         '<section class="relative panel rounded-sm overflow-hidden mb-10">' +
-          '<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(212,160,42,0.05)_0%,transparent_60%)]"></div>' +
+          '' +
           '<div class="relative grid md:grid-cols-[1fr_auto] gap-8 p-8 sm:p-12 items-center">' +
             '<div>' +
               '<div class="flex items-center gap-2 text-[#9a4a2a] mb-5">' + icon('alert', 14) +
@@ -331,13 +330,13 @@
               '<p class="text-[#8a98a8] leading-relaxed max-w-xl">NAVEGUE CON CAUTELA.</p>' +
             '</div>' +
             '<div class="hidden md:flex justify-center"><div class="relative">' + atomMark('w-56 h-56') +
-              '<div class="absolute inset-0 bg-[radial-gradient(circle,rgba(212,160,42,0.06)_0%,transparent_70%)] rounded-full"></div></div></div>' +
+              '</div></div>' +
           '</div>' +
         '</section>' +
         '<div class="grid sm:grid-cols-2 gap-4 mb-12">' + cards + '</div>' +
         '<div class="panel rounded-sm p-6 sm:p-8">' +
           '<div class="flex items-center gap-2 text-[#d4a02a] mb-4"><span class="w-1.5 h-1.5 bg-[#d4a02a] rounded-full animate-pulse-glow"></span>' +
-            '<span class="font-mono-ibm text-[10px] tracking-[0.3em] uppercase">Informe Breve</span></div>' +
+            '<span class="font-mono-ibm text-[10px] tracking-[0.3em] uppercase">Informe</span></div>' +
           '<p class="text-[#8a98a8] leading-relaxed mb-4">Una anomalía es todo objeto, entidad o fenómeno cuyas propiedades se desvían de las leyes naturales conocidas sin causa convencional que las explique. No es necesario que sea peligroso; basta con que resulte inexplicable bajo los modelos científicos actuales.</p>' +
           '<p class="text-[#5a6878] leading-relaxed text-sm">La labor del Departamento Científico consiste en comprender estas desviaciones a fondo antes de clasificarlas, para que cada decisión sobre su contención o uso se apoye en evidencia y no en conjetura.</p>' +
         '</div>' +
@@ -349,16 +348,16 @@
       return '<div class="animate-fade-in">' +
         sectionHeading('§ 01 — Documento SCD-001', 'Introducción', 'Propósito y alcance del Departamento Científico') +
         '<div class="relative panel rounded-sm overflow-hidden">' +
-          '<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(212,160,42,0.05)_0%,transparent_60%)]"></div>' +
+          '' +
           '<div class="relative grid md:grid-cols-[1fr_auto] gap-8 p-8 sm:p-12 items-center">' +
             '<div>' +
               '<div class="flex items-center gap-2 text-[#d4a02a] mb-5"><span class="w-1.5 h-1.5 bg-[#d4a02a] rounded-full animate-pulse-glow"></span>' +
-                '<span class="font-mono-ibm text-[10px] tracking-[0.3em] uppercase">Documento Fundacional</span></div>' +
+                '<span class="font-mono-ibm text-[10px] tracking-[0.3em] uppercase">Documento DC</span></div>' +
               '<p class="text-[#c8d2dc] text-lg leading-relaxed font-light mb-6">El Departamento Científico es uno de los pilares fundamentales que forman parte de la fundación. Su objetivo principal se enfoca en el desarrollo de la información que se obtiene mediante el estudio de entidades anómalas; con la finalidad de expandir los conocimientos posibles para el desarrollo máximo de procedimientos especiales de contención.</p>' +
               '<p class="border-l-2 border-[#9a4a2a] pl-4 text-[#8a98a8] leading-relaxed">Fomentamos en nombre de la ciencia expandir los horizontes del departamento y ayudar a la fundación con las mejores investigaciones posibles, logrando los objetivos que se proponen.</p>' +
             '</div>' +
             '<div class="hidden md:flex justify-center"><div class="relative">' + atomMark('w-48 h-48') +
-              '<div class="absolute inset-0 bg-[radial-gradient(circle,rgba(212,160,42,0.06)_0%,transparent_70%)] rounded-full"></div></div></div>' +
+              '</div></div>' +
           '</div>' +
         '</div>' +
       '</div>';
@@ -378,7 +377,7 @@
     }
 
     function itemCard(iconName, title, desc) {
-      return '<div class="border border-[#1a2532] bg-[#0c1117]/60 p-5 hover:border-[#d4a02a]/30 transition-all flex items-start gap-4">' +
+      return '<div class="border border-[#1a2532] bg-[#07090c] p-5 hover:border-[#d4a02a]/30 transition-all flex items-start gap-4">' +
         '<div class="w-10 h-10 border border-[#1a2532] flex items-center justify-center text-[#d4a02a] flex-shrink-0">' + icon(iconName, 18) + '</div>' +
         '<div>' +
           '<h4 class="font-typewriter text-base text-[#c8d2dc] mb-1.5">' + title + '</h4>' +
@@ -399,7 +398,7 @@
       ];
 
       var accessHtml = accessLevels.map(function (lvl) {
-        return '<div class="border border-[#1a2532] bg-[#0c1117]/70 p-4 hover:bg-[#111a23]/60 transition-all">' +
+        return '<div class="border border-[#1a2532] bg-[#07090c] p-4 hover:bg-[#07090c] transition-all">' +
           '<div class="flex items-center justify-between mb-2.5">' +
             '<span class="font-mono-ibm text-xs px-2 py-0.5 font-semibold ' + (lvl.high ? 'bg-[#d4a02a]/10 text-[#d4a02a]' : 'bg-[#1a2532]/80 text-[#8a98a8]') + '">' + lvl.lvl + '</span>' +
             '<span class="font-mono-ibm text-[9px] uppercase tracking-[0.2em] text-[#5a6878]">' + lvl.tag + '</span>' +
@@ -473,7 +472,7 @@
           '</div>'
         ) +
 
-        '<div class="flex items-center gap-3 border border-[#9a4a2a]/30 bg-[#9a4a2a]/5 p-4">' +
+        '<div class="flex items-center gap-3 border border-[#9a4a2a]/30 bg-[#07090c] p-4">' +
           icon('shieldAlert', 18, 'text-[#9a4a2a] flex-shrink-0') +
           '<p class="text-xs text-[#c8d2dc] leading-relaxed">El desconocimiento de estas normas no exime de su cumplimiento, y cualquier infracción activará el protocolo sancionatorio correspondiente.</p>' +
         '</div>' +
@@ -521,10 +520,11 @@
           '<div class="mt-8 grid lg:grid-cols-[1fr_minmax(0,19rem)] gap-8 items-start">' +
             '<div>' +
               '<h3 class="font-typewriter text-xl text-[#c8d2dc] mb-3">Qué hace la Administración</h3>' +
-              '<p class="text-sm text-[#8a98a8] leading-relaxed">Se encarga de que el departamento funcione: el personal, los permisos de acceso, el presupuesto y el archivo. Si algo no cuadra, se lo comunica al Director.</p>' +
+              '<p class="text-sm text-[#8a98a8] leading-relaxed"> La administración del departamento científico consiste en una organización de ciertos rangos del departamento con el poder de toma de decisiones.</p>' +
+              '<p class="text-sm text-[#8a98a8] leading-relaxed"> Desde la administración se pueden hacer grandes cambios, desde la dirección de los experimentos, formación a los estudiantes, organización de grupo...</p>' +
             '</div>' +
-            '<aside class="relative overflow-hidden border border-[#d4a02a]/30 bg-gradient-to-b from-[#0c1117] to-[#111a23] p-5">' +
-              '<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(212,160,42,0.06)_0%,transparent_65%)]"></div>' +
+            '<aside class="relative overflow-hidden border border-[#d4a02a]/30 bg-[#07090c] p-5">' +
+              '' +
               '<div class="relative">' +
                 '<div class="flex items-center gap-2 text-[#d4a02a]">' +
                   icon('radio', 14, 'animate-pulse') +
@@ -557,8 +557,8 @@
 
     function jerarquia() {
       var rows = RANKS.map(function (r, i) {
-        return '<div class="grid md:grid-cols-[1.5fr_1fr_0.8fr] gap-4 md:gap-0 px-5 py-5 md:py-4 border-b border-[#1a2532] last:border-b-0 transition-colors hover:bg-[#111a23]/50 ' +
-          (i % 2 === 0 ? 'bg-[#0c1117]/45' : 'bg-transparent') + '">' +
+        return '<div class="grid md:grid-cols-[1.5fr_1fr_0.8fr] gap-4 md:gap-0 px-5 py-5 md:py-4 border-b border-[#1a2532] last:border-b-0 transition-colors hover:bg-[#07090c] ' +
+          (i % 2 === 0 ? 'bg-[#07090c]' : 'bg-transparent') + '">' +
           '<div class="flex items-start gap-3">' +
             '<span class="text-[#d4a02a] mt-0.5 flex-shrink-0">' + (r.director ? icon('crown', 20) : icon('star', 18)) + '</span>' +
             '<div><div class="font-typewriter text-base text-[#c8d2dc]">' + r.title + '</div>' +
@@ -576,7 +576,7 @@
         docBlock(
           '<p class="mb-8">La jerarquía del Departamento Científico se organiza en rangos distribuidos entre bajo, medio y alto mando. Cada rango cuenta con una acreditación determinada según su posición.</p>' +
           '<div class="border border-[#1a2532] overflow-hidden">' +
-            '<div class="hidden md:grid grid-cols-[1.5fr_1fr_0.8fr] bg-[#0c1117] border-b border-[#1a2532] font-mono-ibm text-[10px] text-[#d4a02a] tracking-[0.2em] uppercase">' +
+            '<div class="hidden md:grid grid-cols-[1.5fr_1fr_0.8fr] bg-[#07090c] border-b border-[#1a2532] font-mono-ibm text-[10px] text-[#d4a02a] tracking-[0.2em] uppercase">' +
               '<div class="px-5 py-4">Rangos</div><div class="px-5 py-4">Escala</div><div class="px-5 py-4">Acreditación</div>' +
             '</div>' + rows +
           '</div>'
@@ -625,3 +625,4 @@
   </script>
 </body>
 </html>
+
